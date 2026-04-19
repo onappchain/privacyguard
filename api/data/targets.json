@@ -1,0 +1,38 @@
+[
+  {
+    "id": "california_drop",
+    "name": "California DROP",
+    "category": "official",
+    "mode": "manual_official",
+    "region": ["CA"],
+    "supports": ["delete_request", "opt_out"],
+    "status": "supported_guided",
+    "automationLevel": "guided_only",
+    "notes": "Official California Delete Request and Opt-Out Platform. PrivacyGuard can guide preparation, track status, and generate reminders, but this version does not auto-submit into the state portal.",
+    "actionUrl": "https://privacy.ca.gov/drop/"
+  },
+  {
+    "id": "manual_broker_template",
+    "name": "Direct broker request template",
+    "category": "manual",
+    "mode": "manual_template",
+    "region": ["US"],
+    "supports": ["delete_request", "opt_out"],
+    "status": "supported_template",
+    "automationLevel": "template_only",
+    "notes": "Fallback template flow for companies without a live automated adapter.",
+    "actionUrl": ""
+  },
+  {
+    "id": "privacy_email_workflow",
+    "name": "Privacy email workflow",
+    "category": "manual",
+    "mode": "manual_email",
+    "region": ["US"],
+    "supports": ["delete_request", "access_request", "opt_out"],
+    "status": "supported_template",
+    "automationLevel": "template_only",
+    "notes": "For companies that accept privacy requests by email, PrivacyGuard prepares a submission pack and follow-up cadence.",
+    "actionUrl": ""
+  }
+]

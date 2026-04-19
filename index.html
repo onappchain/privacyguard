@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrivacyGuard | Your privacy deletion copilot for California DROP and beyond</title>
+    <meta name="description" content="PrivacyGuard helps you understand California DROP, build a practical deletion checklist, and stay on top of recurring privacy hygiene with reminders and plain-language guidance." />
+    <style>
+      :root {
+        --bg: #08111f;
+        --panel: #0f1b2d;
+        --panel-2: #12233a;
+        --text: #eef4ff;
+        --muted: #b3c2d9;
+        --accent: #8ee39a;
+        --accent-2: #d9f99d;
+        --border: rgba(255,255,255,.12);
+        --shadow: 0 20px 60px rgba(0,0,0,.35);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #153255 0%, var(--bg) 55%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      a { color: inherit; text-decoration: none; }
+      .container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+      .nav {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 22px 0;
+      }
+      .brand { font-weight: 800; letter-spacing: .2px; }
+      .nav-links { display: flex; gap: 18px; align-items: center; color: var(--muted); font-size: 14px; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        padding: 14px 20px; border-radius: 999px; font-weight: 700; transition: .2s ease;
+        border: 1px solid transparent;
+      }
+      .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #08111f; }
+      .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(142, 227, 154, .25); }
+      .btn-secondary { border-color: var(--border); color: var(--text); background: rgba(255,255,255,.04); }
+      .hero {
+        display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; padding: 38px 0 56px;
+        align-items: center;
+      }
+      .eyebrow {
+        display: inline-block; padding: 6px 12px; border-radius: 999px; background: rgba(142,227,154,.12);
+        color: var(--accent-2); font-size: 13px; font-weight: 700; letter-spacing: .2px;
+      }
+      h1 {
+        margin: 16px 0 12px; font-size: clamp(36px, 7vw, 64px); line-height: 1.02; letter-spacing: -1.8px;
+      }
+      .lead { font-size: 18px; color: var(--muted); max-width: 700px; }
+      .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
+      .hero-card, .card, .pricing, .faq-item {
+        background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+        border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow);
+      }
+      .hero-card { padding: 24px; }
+      .hero-card h3, .pricing h3 { margin-top: 0; }
+      .hero-list { padding-left: 18px; color: var(--muted); }
+      .meta-note {
+        margin-top: 14px; padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.05); color: var(--muted); font-size: 14px;
+      }
+      section { padding: 24px 0 8px; }
+      .section-title { font-size: 30px; margin: 0 0 10px; letter-spacing: -.8px; }
+      .section-copy { color: var(--muted); max-width: 760px; margin: 0 0 24px; }
+      .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .card { padding: 22px; }
+      .card h3 { margin-top: 0; margin-bottom: 8px; }
+      .kicker { color: var(--accent-2); font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+      .comparison {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+      }
+      .comparison ul, .pricing ul { padding-left: 18px; color: var(--muted); }
+      .pricing-wrap {
+        display: grid; grid-template-columns: .9fr 1.1fr; gap: 18px; align-items: start;
+      }
+      .pricing { padding: 28px; }
+      .price { font-size: 52px; line-height: 1; margin: 10px 0; font-weight: 800; }
+      .faq { display: grid; gap: 14px; }
+      .faq-item { padding: 20px; }
+      .faq-item h3 { margin: 0 0 8px; font-size: 18px; }
+      footer { padding: 36px 0 56px; color: var(--muted); font-size: 14px; }
+      .footer-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+      @media (max-width: 920px) {
+        .hero, .grid-3, .grid-2, .comparison, .pricing-wrap { grid-template-columns: 1fr; }
+        .nav { gap: 12px; align-items: flex-start; flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav">
+        <div class="brand">PrivacyGuard</div>
+        <div class="nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </nav>
+
+      <header class="hero">
+        <div>
+          <div class="eyebrow">Consumer privacy guidance for California DROP and beyond</div>
+          <h1>Your privacy deletion copilot for California DROP and beyond.</h1>
+          <p class="lead">
+            PrivacyGuard helps you understand official tools like California DROP, build a personalized deletion checklist,
+            and stay on top of recurring privacy hygiene with reminders and practical follow-up actions.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="https://checkout.stripe.com/c/pay/cs_live_b1mBoTvv1qra0WaotRddBGwtfbhM9JvxnPQxqAGHo7flBfHcvNgdh41d0D">Subscribe for $9/month</a>
+            <a class="btn btn-secondary" href="#drop">Start with the free DROP guide</a>
+          </div>
+          <div class="meta-note">
+            PrivacyGuard is a guidance product. It does not claim to submit California DROP requests for you,
+            and nothing on this site is legal advice.
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h3>What you get</h3>
+          <ul class="hero-list">
+            <li>Plain-language explanation of what California DROP does and does not do</li>
+            <li>A personalized deletion checklist you can actually work through</li>
+            <li>Reminder suggestions for follow-up and recurring privacy hygiene</li>
+            <li>Clear separation between free official tools and paid third-party guidance</li>
+          </ul>
+          <div class="meta-note">
+            Official source used for California DROP guidance: privacy.ca.gov/drop/
+          </div>
+        </aside>
+      </header>
+
+      <section id="drop">
+        <h2 class="section-title">What California DROP is</h2>
+        <p class="section-copy">
+          According to the California Privacy Protection Agency, DROP is the Delete Request and Opt-out Platform.
+          It is a free California-run tool that lets eligible California residents send one request to more than 500 registered data brokers.
+          The state says data brokers begin processing DROP requests on August 1, 2026.
+        </p>
+        <div class="grid-3">
+          <div class="card">
+            <div class="kicker">Who it is for</div>
+            <h3>California residents</h3>
+            <p>Eligibility is based on California residency. The official site says some requests can also be submitted for another California resident in certain cases, such as a child or elderly relative.</p>
+          </div>
+          <div class="card">
+            <div class="kicker">What it covers</div>
+            <h3>Registered data brokers</h3>
+            <p>DROP is aimed at registered data brokers, not every company on the internet. It helps with deletion and no-sale requests in that specific part of the privacy ecosystem.</p>
+          </div>
+          <div class="card">
+            <div class="kicker">What to expect</div>
+            <h3>Not instant, not universal</h3>
+            <p>The state says brokers start processing on August 1, 2026, then delete data within 90 days, with later deletion cycles every 45 days. That is powerful, but it is not universal deletion from all companies.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works">
+        <h2 class="section-title">How it works in 3 steps</h2>
+        <p class="section-copy">A simple first version: use the free official tool for the state workflow, and use PrivacyGuard for guidance, planning, and follow-through.</p>
+        <div class="grid-3">
+          <div class="card">
+            <div class="kicker">Step 1</div>
+            <h3>Check eligibility</h3>
+            <p>Confirm whether you are a California resident and whether DROP is the right starting point for you.</p>
+          </div>
+          <div class="card">
+            <div class="kicker">Step 2</div>
+            <h3>Build your checklist</h3>
+            <p>Get a practical action list for official deletion tools, broker removal, account clean-up, ad ID resets, and follow-up tasks.</p>
+          </div>
+          <div class="card">
+            <div class="kicker">Step 3</div>
+            <h3>Stay on schedule</h3>
+            <p>Use reminders and recurring privacy hygiene prompts so your deletion work does not become a one-time event.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Free official tool vs paid PrivacyGuard</h2>
+        <p class="section-copy">PrivacyGuard is intentionally not framed as a replacement for California's official tool. It is the layer that helps you understand what to do next.</p>
+        <div class="comparison">
+          <div class="card">
+            <div class="kicker">Free via California DROP</div>
+            <h3>Official state-run action</h3>
+            <ul>
+              <li>Submit one request to registered California data brokers</li>
+              <li>Verify California residency through the official process</li>
+              <li>Use a free government-run platform</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="kicker">PrivacyGuard at $9/month</div>
+            <h3>Guidance, planning, and follow-through</h3>
+            <ul>
+              <li>Personalized deletion and privacy hygiene checklist</li>
+              <li>Recurring reminder suggestions and follow-up planning</li>
+              <li>Updates when new official tools or relevant privacy workflows appear</li>
+              <li>Plain-language support that distinguishes official tools from paid services</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing">
+        <h2 class="section-title">Simple pricing</h2>
+        <p class="section-copy">One plan, built to be lightweight and launchable.</p>
+        <div class="pricing-wrap">
+          <div class="card">
+            <h3>Best for people who want a privacy routine, not just a one-time task</h3>
+            <p>Use the free California tool where it applies. Use PrivacyGuard when you want help staying organized, recurring, and realistic about what deletion workflows can accomplish.</p>
+          </div>
+          <div class="pricing">
+            <div class="kicker">PrivacyGuard Monthly</div>
+            <div class="price">$9<span style="font-size:20px; color: var(--muted); font-weight:600;">/month</span></div>
+            <ul>
+              <li>California DROP guidance and eligibility flow</li>
+              <li>Personalized privacy checklist generation</li>
+              <li>Reminder suggestions for follow-up actions</li>
+              <li>Privacy hygiene workflow support</li>
+            </ul>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="https://checkout.stripe.com/c/pay/cs_live_b1mBoTvv1qra0WaotRddBGwtfbhM9JvxnPQxqAGHo7flBfHcvNgdh41d0D">Subscribe now</a>
+              <a class="btn btn-secondary" href="https://privacy.ca.gov/drop/" target="_blank" rel="noreferrer">Visit official DROP</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq">
+          <div class="faq-item">
+            <h3>Can PrivacyGuard submit a DROP request for me?</h3>
+            <p>No claim like that is being made in this version. PrivacyGuard is a guidance product. The public site points you to the official California tool and helps you understand the workflow.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Who can use California DROP?</h3>
+            <p>The official California guidance says you must be a California resident to submit a DROP deletion request. The state also says some people may submit for another California resident in certain cases.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Does DROP delete my data everywhere?</h3>
+            <p>No. The official materials describe DROP as a request system for registered data brokers. It is not a universal delete-everything button for every website, app, or data holder.</p>
+          </div>
+          <div class="faq-item">
+            <h3>What are the privacy trade-offs?</h3>
+            <p>You still provide personal information to complete matching and verification. The state says the platform is built to protect that information, but any deletion workflow involves sharing enough information to identify your records.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Is this legal advice?</h3>
+            <p>No. PrivacyGuard provides educational guidance and practical workflow support, not legal advice or legal representation.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>PrivacyGuard is an educational privacy guidance product. For California DROP, use the official California Privacy Protection Agency resources.</div>
+        <div class="footer-links">
+          <a href="https://privacy.ca.gov/drop/" target="_blank" rel="noreferrer">Official DROP page</a>
+          <a href="https://privacy.ca.gov/drop/about-drop-and-the-delete-act/" target="_blank" rel="noreferrer">About the Delete Act</a>
+          <a href="https://cppa.ca.gov/data_broker_registry/" target="_blank" rel="noreferrer">Data broker registry</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

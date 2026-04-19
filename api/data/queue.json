@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "id": "60bc6364-a7b3-48ce-b1ab-fa042fd410b2",
+    "createdAt": "2026-04-19T23:55:56.541Z",
+    "updatedAt": "2026-04-19T23:55:56.542Z",
+    "status": "prepared",
+    "targetId": "california_drop",
+    "requestType": "delete_request",
+    "payload": {
+      "targetId": "california_drop",
+      "requestType": "delete_request",
+      "user": {
+        "name": "Alex Carrabre",
+        "email": "ac@f.inc",
+        "state": "CA"
+      }
+    },
+    "result": {
+      "outcome": "manual_handoff",
+      "message": "California DROP is supported as a guided official flow. PrivacyGuard prepares the job, tracks it, and hands the user into the state portal.",
+      "nextSteps": [
+        "Open the official California DROP portal",
+        "Complete identity verification and submission",
+        "Return to PrivacyGuard to mark the request complete"
+      ],
+      "actionUrl": "https://privacy.ca.gov/drop/",
+      "automationLevel": "guided_only"
+    }
+  }
+]

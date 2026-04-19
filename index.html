@@ -3,214 +3,132 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PrivacyGuard | Filing agent for supported privacy request workflows</title>
-    <meta
-      name="description"
-      content="PrivacyGuard helps prepare, track, and route supported privacy deletion workflows without pretending to auto-file everywhere."
-    />
-    <style>
-      :root {
-        --bg: #07111d;
-        --bg-soft: #0d1a2d;
-        --panel: rgba(255, 255, 255, 0.06);
-        --panel-strong: rgba(255, 255, 255, 0.1);
-        --text: #eef4ff;
-        --muted: #b7c6db;
-        --line: rgba(255, 255, 255, 0.12);
-        --accent: #90f0b6;
-        --accent-strong: #d8ff97;
-        --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: radial-gradient(circle at top left, rgba(60, 125, 255, 0.22), transparent 32%), radial-gradient(circle at top right, rgba(144, 240, 182, 0.16), transparent 28%), var(--bg);
-        color: var(--text);
-        line-height: 1.6;
-      }
-      a { color: inherit; text-decoration: none; }
-      .container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
-      .nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; }
-      .brand { font-weight: 800; font-size: 18px; }
-      .nav-links { display: flex; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
-      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 20px; border-radius: 999px; font-weight: 700; border: 1px solid transparent; }
-      .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-strong)); color: #06111d; box-shadow: 0 14px 36px rgba(144, 240, 182, 0.24); }
-      .btn-secondary { background: rgba(255,255,255,0.04); border-color: var(--line); color: var(--text); }
-      .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 22px; align-items: center; padding: 34px 0 48px; }
-      .eyebrow { display: inline-flex; padding: 6px 12px; border-radius: 999px; background: rgba(144,240,182,0.12); color: var(--accent-strong); font-size: 13px; font-weight: 700; }
-      h1 { margin: 16px 0 12px; font-size: clamp(38px, 7vw, 64px); line-height: 1.02; letter-spacing: -2px; max-width: 760px; }
-      .lead { margin: 0; font-size: 19px; color: var(--muted); max-width: 760px; }
-      .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
-      .panel, .card, .pricing, .faq-item, .notice { background: linear-gradient(180deg, var(--panel-strong), var(--panel)); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); }
-      .panel, .card, .pricing, .faq-item { padding: 22px; }
-      .notice { margin-top: 16px; padding: 14px 16px; color: var(--muted); font-size: 14px; }
-      section { padding: 22px 0 10px; }
-      .section-title { margin: 0 0 10px; font-size: 32px; letter-spacing: -0.8px; }
-      .section-copy { margin: 0 0 24px; color: var(--muted); max-width: 780px; }
-      .grid-3, .grid-2 { display: grid; gap: 18px; }
-      .grid-3 { grid-template-columns: repeat(3, 1fr); }
-      .grid-2 { grid-template-columns: repeat(2, 1fr); }
-      .kicker { color: var(--accent-strong); font-size: 13px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.4px; }
-      ul { padding-left: 18px; color: var(--muted); }
-      li { margin-bottom: 8px; }
-      .pricing .price { font-size: 54px; font-weight: 800; line-height: 1; margin: 10px 0; }
-      .small { color: var(--muted); font-size: 14px; }
-      .api-box { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 16px; padding: 14px; color: #dfe9f8; overflow-x: auto; }
-      footer { padding: 42px 0 56px; color: var(--muted); font-size: 14px; }
-      @media (max-width: 900px) { .hero, .grid-3, .grid-2 { grid-template-columns: 1fr; } .nav { align-items: flex-start; gap: 14px; flex-direction: column; } }
-    </style>
+    <title>PrivacyGuard | Privacy request filing workspace</title>
+    <meta name="description" content="PrivacyGuard is a privacy request workspace with a supported-target filing backend, clear status tracking, and a calm Apple-inspired interface." />
+    <link rel="stylesheet" href="/public/styles.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="shell">
       <nav class="nav">
         <div class="brand">PrivacyGuard</div>
         <div class="nav-links">
-          <a href="#how">How it works</a>
-          <a href="#coverage">Coverage</a>
-          <a href="#api">Backend</a>
-          <a href="#pricing">Pricing</a>
+          <a href="#workspace">Workspace</a>
+          <a href="#queue">Queue</a>
+          <a href="#audit">Audit</a>
+          <a href="https://checkout.stripe.com/c/pay/cs_test_a1V0j6hsYz3wLWEZ3v8lHQ0ha3lo0BKGGMVuv2FJ53UQgq2vb25l4t81tb#fidkdWxOYHwnPyd1blpxYHZxWjA0V2A1N0prbHVgPDBId1RxYV9qQ31jY1Q8dVJdUVxIXW9LQW1mNmA3T2FMXUFIPENhYFdAUkJ1V0p2QWs1M2xBXGR2Y09fQmN3SGBdUF8xQ3U1N1VzN2J%2FRVdfQW1rbE5hNzJBPQ8kN3BuaDJEfScpJ2N3YHNgY2A%2FJz8nZG9nYGdvdz1tYWB3aWBgYWB2J3gl">Subscribe</a>
         </div>
       </nav>
 
       <section class="hero">
-        <div>
-          <div class="eyebrow">Supported privacy request filing agent</div>
-          <h1>Prepare, track, and route privacy requests without pretending we file everywhere.</h1>
-          <p class="lead">
-            PrivacyGuard now includes a real backend filing agent for supported workflows. It keeps a target registry, prepares jobs, logs each attempt, and clearly separates guided official flows from manual templates and unsupported targets.
-          </p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="https://checkout.stripe.com/c/pay/cs_test_a1V0j6hsYz3wLWEZ3v8lHQ0ha3lo0BKGGMVuv2FJ53UQgq2vb25l4t81tb#fidkdWxOYHwnPyd1blpxYHZxWjA0V2A1N0prbHVgPDBId1RxYV9qQ31jY1Q8dVJdUVxIXW9LQW1mNmA3T2FMXUFIPENhYFdAUkJ1V0p2QWs1M2xBXGR2Y09fQmN3SGBdUF8xQ3U1N1VzN2J%2FRVdfQW1rbE5hNzJBPQ8kN3BuaDJEfScpJ2N3YHNgY2A%2FJz8nZG9nYGdvdz1tYWB3aWBgYWB2J3gl">Start PrivacyGuard</a>
-            <a class="btn btn-secondary" href="#api">View backend model</a>
+        <div class="panel hero-copy">
+          <div class="eyebrow">Supported privacy request workspace</div>
+          <h1>File what is supported. Track everything honestly.</h1>
+          <p class="lead">PrivacyGuard now has a connected frontend and backend for supported privacy request workflows. It loads your target registry, prepares request jobs, records audit events, and makes the limits of automation explicit.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#workspace">Open workspace</a>
+            <button class="btn btn-secondary" id="refreshBtn" type="button">Refresh data</button>
           </div>
-          <div class="notice">
-            This version does not claim universal auto-submission. It supports guided official workflows, manual request templates, and explicit unsupported fallbacks with audit logs.
+          <div class="stat-grid">
+            <div class="stat"><strong id="targetCount">0</strong><span>Supported targets in registry</span></div>
+            <div class="stat"><strong id="queueCount">0</strong><span>Tracked request jobs</span></div>
+            <div class="stat"><strong id="preparedCount">0</strong><span>Prepared jobs</span></div>
+            <div class="stat"><strong>v2</strong><span>Connected filing workspace</span></div>
           </div>
         </div>
-        <div class="panel">
-          <div class="kicker">What is live now</div>
-          <h3>Backend filing model</h3>
-          <ul>
-            <li>Target registry with per-site handling mode</li>
-            <li>Submission queue with job status tracking</li>
-            <li>Audit log for each created and prepared job</li>
-            <li>Adapters for guided official, template, and email workflows</li>
-            <li>Hard stop for unsupported targets</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="how">
-        <h2 class="section-title">How it works</h2>
-        <p class="section-copy">PrivacyGuard uses a conservative filing model. Every target is labeled before any action is promised.</p>
-        <div class="grid-3">
-          <div class="card">
-            <div class="kicker">1. Classify</div>
-            <h3>Registry first</h3>
-            <p>Each target is marked as guided official, manual template, privacy email, or unsupported before a job is prepared.</p>
+        <div class="panel hero-side">
+          <h2 class="section-title">Apple-inspired by intent</h2>
+          <p class="section-copy">This interface uses restrained typography, soft glass surfaces, high whitespace, muted color, and clear hierarchy. The goal is calm trust rather than loud growth-page styling.</p>
+          <div class="kv-list">
+            <div class="kv-item"><div><small>Design language</small><br /><strong>Minimal, airy, product-first</strong></div><span class="badge">polished</span></div>
+            <div class="kv-item"><div><small>Backend state</small><br /><strong>Targets, queue, audit, adapters</strong></div><span class="badge">connected</span></div>
+            <div class="kv-item"><div><small>Promise</small><br /><strong>No fake universal automation</strong></div><span class="badge">honest</span></div>
           </div>
-          <div class="card">
-            <div class="kicker">2. Prepare</div>
-            <h3>Queue and audit</h3>
-            <p>Each request becomes a job with a timestamp, status, payload, and audit trail. Nothing is silently claimed.</p>
-          </div>
-          <div class="card">
-            <div class="kicker">3. Route</div>
-            <h3>Adapter outcome</h3>
-            <p>The adapter either routes you into the official flow, prepares a manual submission pack, or flags the target as unsupported.</p>
-          </div>
+          <p class="footer-note">Official state tools remain free where offered. PrivacyGuard is the workspace and filing layer around supported workflows.</p>
         </div>
       </section>
 
-      <section id="coverage">
-        <h2 class="section-title">Current coverage</h2>
-        <p class="section-copy">Version 2 starts with a few honest workflows instead of a fake universal network.</p>
-        <div class="grid-2">
-          <div class="card">
-            <div class="kicker">Supported now</div>
-            <ul>
-              <li>California DROP guidance and tracked handoff</li>
-              <li>Manual broker request template workflow</li>
-              <li>Privacy-email submission workflow</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="kicker">Not claimed</div>
-            <ul>
-              <li>No promise to file on every site possible</li>
-              <li>No hidden browser automation claims</li>
-              <li>No guaranteed deletion outcomes</li>
-            </ul>
-          </div>
+      <section id="workspace" class="workspace">
+        <div class="panel workspace-card">
+          <div class="eyebrow">Intake</div>
+          <h2 class="section-title">Prepare a request</h2>
+          <p class="section-copy">Choose a supported target, enter the requester details, and prepare the workflow. The backend will queue it, adapt it, and log the result.</p>
+          <form id="intakeForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="targetId">Target</label>
+                <select id="targetId" required></select>
+              </div>
+              <div class="field">
+                <label for="requestType">Request type</label>
+                <select id="requestType" required>
+                  <option value="delete_request">Delete request</option>
+                  <option value="opt_out">Opt out</option>
+                  <option value="access_request">Access request</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="userName">Full name</label>
+                <input id="userName" placeholder="Alex Carrabre" required />
+              </div>
+              <div class="field">
+                <label for="userEmail">Email</label>
+                <input id="userEmail" type="email" placeholder="ac@f.inc" required />
+              </div>
+              <div class="field">
+                <label for="residentState">State</label>
+                <input id="residentState" placeholder="CA" required />
+              </div>
+              <div class="field">
+                <label for="companyName">Company name</label>
+                <input id="companyName" placeholder="Optional for template workflows" />
+              </div>
+              <div class="field full">
+                <label for="privacyEmail">Privacy contact email</label>
+                <input id="privacyEmail" placeholder="privacy@example.com" />
+              </div>
+              <div class="field full">
+                <label for="notes">Notes</label>
+                <textarea id="notes" placeholder="Add context, identifiers to prepare, or follow-up notes."></textarea>
+              </div>
+            </div>
+            <div class="helper">For California residents, choose California DROP when you want the official state-guided route.</div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Prepare request</button>
+              <a class="btn btn-secondary" href="https://checkout.stripe.com/c/pay/cs_test_a1V0j6hsYz3wLWEZ3v8lHQ0ha3lo0BKGGMVuv2FJ53UQgq2vb25l4t81tb#fidkdWxOYHwnPyd1blpxYHZxWjA0V2A1N0prbHVgPDBId1RxYV9qQ31jY1Q8dVJdUVxIXW9LQW1mNmA3T2FMXUFIPENhYFdAUkJ1V0p2QWs1M2xBXGR2Y09fQmN3SGBdUF8xQ3U1N1VzN2J%2FRVdfQW1rbE5hNzJBPQ8kN3BuaDJEfScpJ2N3YHNgY2A%2FJz8nZG9nYGdvdz1tYWB3aWBgYWB2J3gl">Subscribe</a>
+            </div>
+            <div id="formMessage" class="message">Load a target and submit a request to begin.</div>
+          </form>
         </div>
-      </section>
 
-      <section id="api">
-        <h2 class="section-title">Backend shape</h2>
-        <p class="section-copy">The live code now includes a minimal filing backend with targets, queueing, adapters, and audit logging.</p>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Live endpoints</h3>
-            <ul>
-              <li>GET /api/targets</li>
-              <li>GET /api/queue</li>
-              <li>GET /api/audit</li>
-              <li>POST /api/submit</li>
-            </ul>
+        <div class="stack">
+          <div class="panel stack-card">
+            <div class="eyebrow">Target details</div>
+            <h2 class="section-title">Selected target</h2>
+            <div id="targetInfo" class="kv-list"><div class="muted">Loading targets...</div></div>
           </div>
-          <div class="card">
-            <h3>Sample submission</h3>
-            <div class="api-box">{
-  "targetId": "california_drop",
-  "requestType": "delete_request",
-  "user": {
-    "name": "Alex Carrabre",
-    "state": "CA",
-    "email": "ac@f.inc"
-  }
-}</div>
+          <div class="panel stack-card">
+            <div class="eyebrow">Prepared result</div>
+            <h2 class="section-title">Latest workflow</h2>
+            <div id="results"><div class="muted">Submit a request to see prepared output.</div></div>
           </div>
         </div>
       </section>
 
-      <section id="pricing">
-        <div class="pricing">
-          <div class="kicker">Pricing</div>
-          <h3>PrivacyGuard Monthly</h3>
-          <div class="price">$9<span class="small">/month</span></div>
-          <p class="section-copy">
-            Includes filing-job preparation, privacy workflow tracking, request templates, and California DROP guidance. As adapters are added, supported coverage expands without changing the product promise.
-          </p>
-          <a class="btn btn-primary" href="https://checkout.stripe.com/c/pay/cs_test_a1V0j6hsYz3wLWEZ3v8lHQ0ha3lo0BKGGMVuv2FJ53UQgq2vb25l4t81tb#fidkdWxOYHwnPyd1blpxYHZxWjA0V2A1N0prbHVgPDBId1RxYV9qQ31jY1Q8dVJdUVxIXW9LQW1mNmA3T2FMXUFIPENhYFdAUkJ1V0p2QWs1M2xBXGR2Y09fQmN3SGBdUF8xQ3U1N1VzN2J%2FRVdfQW1rbE5hNzJBPQ8kN3BuaDJEfScpJ2N3YHNgY2A%2FJz8nZG9nYGdvdz1tYWB3aWBgYWB2J3gl">Subscribe</a>
+      <section id="queue" class="workspace" style="margin-top:24px;">
+        <div class="panel rail-card">
+          <div class="eyebrow">Queue</div>
+          <h2 class="section-title">Request jobs</h2>
+          <p class="section-copy">Every prepared request stays visible so the product acts like a workspace, not a dead-end landing page.</p>
+          <div id="queueList" class="list"><div class="muted">Loading queue...</div></div>
+        </div>
+        <div id="audit" class="panel rail-card">
+          <div class="eyebrow">Audit</div>
+          <h2 class="section-title">Recent audit events</h2>
+          <p class="section-copy">Each created and prepared job is logged so workflow claims stay tied to actual backend events.</p>
+          <div id="auditList" class="list"><div class="muted">Loading audit log...</div></div>
         </div>
       </section>
-
-      <section>
-        <h2 class="section-title">FAQ</h2>
-        <div class="grid-2">
-          <div class="faq-item">
-            <h3>Does PrivacyGuard file everywhere?</h3>
-            <p>No. It only claims support where there is a reviewed workflow. Everything else is marked manual or unsupported.</p>
-          </div>
-          <div class="faq-item">
-            <h3>Can it submit California DROP for me?</h3>
-            <p>Not in this version. It prepares and tracks the request, then routes you to the official state flow.</p>
-          </div>
-          <div class="faq-item">
-            <h3>Why start this way?</h3>
-            <p>Because trust matters more than inflated coverage claims. A smaller real backend is better than fake universal automation.</p>
-          </div>
-          <div class="faq-item">
-            <h3>What comes next?</h3>
-            <p>More reviewed adapters, better intake UX, and real execution only where compliance and reliability are strong enough.</p>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        PrivacyGuard is a privacy workflow product, not a law firm. Official state tools remain free where offered.
-      </footer>
     </div>
+    <script src="/public/app.js"></script>
   </body>
 </html>

@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "id": "66e0cdd9-a8a7-4aa3-84aa-76d4567fe09c",
+    "jobId": "60bc6364-a7b3-48ce-b1ab-fa042fd410b2",
+    "at": "2026-04-19T23:55:56.541Z",
+    "event": "job_created",
+    "details": {
+      "targetId": "california_drop",
+      "requestType": "delete_request"
+    }
+  },
+  {
+    "id": "820ef034-0d51-4a27-b55e-4c961a98e6c2",
+    "jobId": "60bc6364-a7b3-48ce-b1ab-fa042fd410b2",
+    "at": "2026-04-19T23:55:56.542Z",
+    "event": "job_prepared",
+    "details": {
+      "outcome": "manual_handoff",
+      "message": "California DROP is supported as a guided official flow. PrivacyGuard prepares the job, tracks it, and hands the user into the state portal.",
+      "nextSteps": [
+        "Open the official California DROP portal",
+        "Complete identity verification and submission",
+        "Return to PrivacyGuard to mark the request complete"
+      ],
+      "actionUrl": "https://privacy.ca.gov/drop/",
+      "automationLevel": "guided_only"
+    }
+  }
+]

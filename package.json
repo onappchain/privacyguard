@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "start": "node api/server.js"
+  "scripts": {},
+  "engines": {
+    "node": "20.x"
   }
 }

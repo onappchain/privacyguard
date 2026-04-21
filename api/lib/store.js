@@ -1,49 +1,108 @@
-import fs from 'fs';
-import path from 'path';
+const memoryState = {
+  queue: [],
+  audit: []
+};
 
-const dataDir = path.resolve(process.cwd(), 'api/data');
-const queuePath = path.join(dataDir, 'queue.json');
-const auditPath = path.join(dataDir, 'audit.json');
+function getStoreMode() {
+  if (process.env.PRIVACYGUARD_STORE_MODE) {
+    return process.env.PRIVACYGUARD_STORE_MODE;
+  }
+  return process.env.BLOB_READ_WRITE_TOKEN ? 'blob' : 'memory';
+}
 
-function ensureFile(filePath, emptyValue) {
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, JSON.stringify(emptyValue, null, 2));
+function blobBaseUrl() {
+  const url = process.env.BLOB_BASE_URL || process.env.BLOB_STORE_URL;
+  if (!url) {
+    throw new Error('Missing BLOB_BASE_URL or BLOB_STORE_URL');
+  }
+  return url.replace(/\/$/, '');
+}
+
+function blobHeaders(contentType = 'application/json') {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) {
+    throw new Error('Missing BLOB_READ_WRITE_TOKEN');
+  }
+  return {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': contentType
+  };
+}
+
+async function blobGetJson(key, emptyValue) {
+  const response = await fetch(`${blobBaseUrl()}/${key}`, {
+    method: 'GET',
+    headers: blobHeaders()
+  });
+
+  if (response.status === 404) {
+    await blobPutJson(key, emptyValue);
+    return structuredClone(emptyValue);
+  }
+
+  if (!response.ok) {
+    throw new Error(`Blob read failed for ${key}: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+async function blobPutJson(key, value) {
+  const response = await fetch(`${blobBaseUrl()}/${key}`, {
+    method: 'PUT',
+    headers: blobHeaders(),
+    body: JSON.stringify(value, null, 2)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Blob write failed for ${key}: ${response.status}`);
   }
 }
 
-export function initStore() {
-  ensureFile(queuePath, []);
-  ensureFile(auditPath, []);
+export async function initStore() {
+  if (getStoreMode() === 'blob') {
+    await Promise.all([
+      blobGetJson('queue.json', []),
+      blobGetJson('audit.json', [])
+    ]);
+  }
 }
 
-export function readJson(filePath) {
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+export async function getQueue() {
+  if (getStoreMode() === 'blob') {
+    return blobGetJson('queue.json', []);
+  }
+  return structuredClone(memoryState.queue);
 }
 
-export function writeJson(filePath, value) {
-  fs.writeFileSync(filePath, JSON.stringify(value, null, 2));
+export async function saveQueue(items) {
+  if (getStoreMode() === 'blob') {
+    await blobPutJson('queue.json', items);
+    return;
+  }
+  memoryState.queue = structuredClone(items);
 }
 
-export function getQueue() {
-  initStore();
-  return readJson(queuePath);
+export async function getAuditLog() {
+  if (getStoreMode() === 'blob') {
+    return blobGetJson('audit.json', []);
+  }
+  return structuredClone(memoryState.audit);
 }
 
-export function saveQueue(items) {
-  writeJson(queuePath, items);
-}
-
-export function getAuditLog() {
-  initStore();
-  return readJson(auditPath);
-}
-
-export function appendAudit(entry) {
-  const items = getAuditLog();
+export async function appendAudit(entry) {
+  const items = await getAuditLog();
   items.push(entry);
-  writeJson(auditPath, items);
+  if (getStoreMode() === 'blob') {
+    await blobPutJson('audit.json', items);
+    return;
+  }
+  memoryState.audit = items;
 }
 
-export function paths() {
-  return { queuePath, auditPath };
+export function getStoreInfo() {
+  return {
+    mode: getStoreMode(),
+    durable: getStoreMode() === 'blob'
+  };
 }

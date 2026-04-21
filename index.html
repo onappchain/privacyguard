@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PrivacyGuard | Privacy request filing workspace</title>
-    <meta name="description" content="PrivacyGuard is a privacy request workspace with a supported-target filing backend, clear status tracking, and a calm Apple-inspired interface." />
+    <title>PrivacyGuard | California DROP assistant</title>
+    <meta name="description" content="PrivacyGuard is a paid assistant for California residents using the official DROP workflow. Start a subscription, prepare your request, and track follow-through without pretending to be the state portal." />
     <link rel="stylesheet" href="/public/styles.css" />
   </head>
   <body>
@@ -12,50 +12,42 @@
       <nav class="nav">
         <div class="brand">PrivacyGuard</div>
         <div class="nav-links">
-          <a href="#workspace">Workspace</a>
-          <a href="#queue">Queue</a>
-          <a href="#audit">Audit</a>
-          <a href="https://checkout.stripe.com/c/pay/cs_test_a1V0j6hsYz3wLWEZ3v8lHQ0ha3lo0BKGGMVuv2FJ53UQgq2vb25l4t81tb#fidkdWxOYHwnPyd1blpxYHZxWjA0V2A1N0prbHVgPDBId1RxYV9qQ31jY1Q8dVJdUVxIXW9LQW1mNmA3T2FMXUFIPENhYFdAUkJ1V0p2QWs1M2xBXGR2Y09fQmN3SGBdUF8xQ3U1N1VzN2J%2FRVdfQW1rbE5hNzJBPQ8kN3BuaDJEfScpJ2N3YHNgY2A%2FJz8nZG9nYGdvdz1tYWB3aWBgYWB2J3gl">Subscribe</a>
+          <a href="#intake">Intake</a>
+          <a href="#queue">Requests</a>
+          <button class="btn btn-secondary nav-subscribe" id="subscribeNavBtn" type="button">Start $9/month</button>
         </div>
       </nav>
 
-      <section class="hero">
-        <div class="panel hero-copy">
-          <div class="eyebrow">Connected privacy request workspace</div>
-          <h1>File what is supported. Track everything honestly.</h1>
-          <p class="lead">PrivacyGuard now has a connected frontend and backend for supported privacy request workflows. It loads your target registry, prepares request jobs, records audit events, and makes the limits of automation explicit.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#workspace">Open workspace</a>
-            <button class="btn btn-secondary" id="refreshBtn" type="button">Refresh data</button>
-          </div>
-          <div class="stat-grid">
-            <div class="stat"><strong id="targetCount">0</strong><span>Supported targets in registry</span></div>
-            <div class="stat"><strong id="queueCount">0</strong><span>Tracked request jobs</span></div>
-            <div class="stat"><strong id="preparedCount">0</strong><span>Prepared jobs</span></div>
-            <div class="stat"><strong>v2</strong><span>Connected filing workspace</span></div>
-          </div>
+      <section class="hero panel">
+        <div class="eyebrow">California DROP assistant</div>
+        <h1>Paid help for California residents using the official DROP workflow.</h1>
+        <p class="lead">PrivacyGuard helps you prepare, track, and follow through on California privacy requests. It is not the government site, and it does not replace the official state portal.</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" id="subscribeHeroBtn" type="button">Start $9/month</button>
+          <a class="btn btn-secondary" href="#intake">Open intake</a>
+          <button class="btn btn-secondary" id="refreshBtn" type="button">Refresh</button>
         </div>
-        <div class="panel hero-side">
-          <h2 class="section-title">Apple-inspired by intent</h2>
-          <p class="section-copy">This interface uses restrained typography, softer glass surfaces, higher whitespace, quieter color, and cleaner hierarchy. The goal is calm trust rather than loud growth-page styling.</p>
-          <div class="kv-list">
-            <div class="kv-item"><div><small>Design language</small><br /><strong>Minimal, airy, product-first</strong></div><span class="badge">polished</span></div>
-            <div class="kv-item"><div><small>Backend state</small><br /><strong>Targets, queue, audit, adapters</strong></div><span class="badge">connected</span></div>
-            <div class="kv-item"><div><small>Promise</small><br /><strong>No fake universal automation</strong></div><span class="badge">honest</span></div>
-          </div>
-          <p class="footer-note">Official state tools remain free where offered. PrivacyGuard is the workspace and filing layer around supported workflows.</p>
+        <div class="stat-grid compact-stats">
+          <div class="stat"><strong id="targetCount">0</strong><span>Supported paths</span></div>
+          <div class="stat"><strong id="queueCount">0</strong><span>Tracked requests</span></div>
+          <div class="stat"><strong id="preparedCount">0</strong><span>Prepared</span></div>
+        </div>
+        <div class="notice-list">
+          <div class="notice">Paid assistant, not a state agency.</div>
+          <div class="notice">Best for California DROP preparation and follow-through.</div>
+          <div class="notice">Official submission still happens in the official flow when required.</div>
         </div>
       </section>
 
-      <section id="workspace" class="workspace">
-        <div class="panel workspace-card">
+      <section id="intake" class="workspace single-column">
+        <div class="panel workspace-card narrow-card">
           <div class="eyebrow">Intake</div>
-          <h2 class="section-title">Prepare a request</h2>
-          <p class="section-copy">Choose a supported target, enter the requester details, and prepare the workflow. The backend will queue it, adapt it, and log the result.</p>
+          <h2 class="section-title">Prepare your request</h2>
+          <p class="section-copy">Start a paid PrivacyGuard workflow, choose the request type, and prepare the details you will use in California DROP or the supported fallback path.</p>
           <form id="intakeForm">
             <div class="form-grid">
               <div class="field">
-                <label for="targetId">Target</label>
+                <label for="targetId">Path</label>
                 <select id="targetId" required></select>
               </div>
               <div class="field">
@@ -76,55 +68,54 @@
               </div>
               <div class="field">
                 <label for="residentState">State</label>
-                <input id="residentState" placeholder="CA" required />
+                <input id="residentState" value="CA" placeholder="CA" required />
               </div>
               <div class="field">
-                <label for="companyName">Company name</label>
-                <input id="companyName" placeholder="Optional for template workflows" />
+                <label for="companyName">Company</label>
+                <input id="companyName" placeholder="Only needed for non-DROP fallback paths" />
               </div>
               <div class="field full">
                 <label for="privacyEmail">Privacy contact email</label>
-                <input id="privacyEmail" placeholder="privacy@example.com" />
+                <input id="privacyEmail" placeholder="Only needed if you are using an email fallback" />
               </div>
               <div class="field full">
                 <label for="notes">Notes</label>
-                <textarea id="notes" placeholder="Add context, identifiers to prepare, or follow-up notes."></textarea>
+                <textarea id="notes" placeholder="Optional identifiers or follow-up notes"></textarea>
               </div>
             </div>
-            <div class="helper">For California residents, choose California DROP when you want the official state-guided route.</div>
+            <div class="helper">Use California DROP for the official state-guided route. PrivacyGuard prepares and tracks the workflow but does not impersonate the state portal.</div>
             <div class="form-actions">
               <button class="btn btn-primary" type="submit">Prepare request</button>
-              <a class="btn btn-secondary" href="https://checkout.stripe.com/c/pay/cs_test_a1V0j6hsYz3wLWEZ3v8lHQ0ha3lo0BKGGMVuv2FJ53UQgq2vb25l4t81tb#fidkdWxOYHwnPyd1blpxYHZxWjA0V2A1N0prbHVgPDBId1RxYV9qQ31jY1Q8dVJdUVxIXW9LQW1mNmA3T2FMXUFIPENhYFdAUkJ1V0p2QWs1M2xBXGR2Y09fQmN3SGBdUF8xQ3U1N1VzN2J%2FRVdfQW1rbE5hNzJBPQ8kN3BuaDJEfScpJ2N3YHNgY2A%2FJz8nZG9nYGdvdz1tYWB3aWBgYWB2J3gl">Subscribe</a>
+              <button class="btn btn-secondary" id="subscribeFormBtn" type="button">Subscribe</button>
             </div>
-            <div id="formMessage" class="message">Select a supported target and prepare a request to begin.</div>
+            <div id="formMessage" class="message">Choose a path and prepare the request.</div>
           </form>
         </div>
 
-        <div class="stack">
-          <div class="panel stack-card">
-            <div class="eyebrow">Target details</div>
-            <h2 class="section-title">Selected target</h2>
-            <div id="targetInfo" class="kv-list"><div class="muted">Loading targets...</div></div>
-          </div>
-          <div class="panel stack-card">
-            <div class="eyebrow">Prepared result</div>
-            <h2 class="section-title">Latest workflow</h2>
-            <div id="results"><div class="muted">Submit a request to see prepared output.</div></div>
-          </div>
+        <div class="panel stack-card narrow-card">
+          <div class="eyebrow">Selected path</div>
+          <h2 class="section-title">What happens next</h2>
+          <div id="targetInfo" class="kv-list"><div class="muted">Loading supported paths...</div></div>
+        </div>
+
+        <div class="panel stack-card narrow-card">
+          <div class="eyebrow">Latest request</div>
+          <h2 class="section-title">Prepared result</h2>
+          <div id="results"><div class="muted">Submit the form to see the prepared workflow.</div></div>
         </div>
       </section>
 
-      <section id="queue" class="workspace" style="margin-top:24px;">
-        <div class="panel rail-card">
-          <div class="eyebrow">Queue</div>
-          <h2 class="section-title">Request jobs</h2>
-          <p class="section-copy">Every prepared request stays visible so the product acts like a workspace, not a dead-end landing page.</p>
+      <section id="queue" class="workspace single-column queue-stack">
+        <div class="panel rail-card narrow-card">
+          <div class="eyebrow">Requests</div>
+          <h2 class="section-title">Tracked request jobs</h2>
+          <p class="section-copy">Each prepared request stays visible so follow-through is clear.</p>
           <div id="queueList" class="list"><div class="muted">Loading queue...</div></div>
         </div>
-        <div id="audit" class="panel rail-card">
+        <div id="audit" class="panel rail-card narrow-card">
           <div class="eyebrow">Audit</div>
-          <h2 class="section-title">Recent audit events</h2>
-          <p class="section-copy">Each created and prepared job is logged so workflow claims stay tied to actual backend events.</p>
+          <h2 class="section-title">Recent events</h2>
+          <p class="section-copy">Brief audit history for created, prepared, and dispatched jobs.</p>
           <div id="auditList" class="list"><div class="muted">Loading audit log...</div></div>
         </div>
       </section>
